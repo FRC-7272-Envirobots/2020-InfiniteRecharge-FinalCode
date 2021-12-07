@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Lift extends SubsystemBase {
   TalonSRX conveyor;
   Solenoid dropper = new Solenoid(0, 1);
+  Solenoid otherDropper = new Solenoid(0, 0); // im guessing it's channel 0
   
   /** Creates a new Lift. */
   public Lift() {
@@ -25,6 +26,16 @@ public class Lift extends SubsystemBase {
 
   public void setDropper(boolean extended) {
     this.dropper.set(extended);
+  }
+
+  public void setOtherDropper(boolean extended) 
+  {
+    otherDropper.set(extended);
+  }
+
+  public void Pulse(double pulseDuration) {
+    dropper.startPulse();
+    dropper.setPulseDuration(pulseDuration);
   }
 
   @Override

@@ -52,8 +52,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton button1 = new JoystickButton(joystick, 12);
-    JoystickButton button11 = new JoystickButton(joystick, 12);
+    JoystickButton button1 = new JoystickButton(joystick, 1);
+    JoystickButton button11 = new JoystickButton(joystick, 11);
     JoystickButton button12 = new JoystickButton(joystick, 12);
 
     button1.whenPressed(new DropLift(lift).withTimeout(15));

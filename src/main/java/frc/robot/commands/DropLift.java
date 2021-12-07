@@ -18,18 +18,21 @@ public class DropLift extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    this.lift.setDropper(true);
+    lift.setOtherDropper(false);
+    }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.lift.setDropper(true);
+    this.lift.setDropper(false);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    this.lift.setDropper(false);
+    this.lift.setDropper(true);
   }
 
   // Returns true when the command should end.

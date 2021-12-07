@@ -24,9 +24,23 @@ public class DefaultDrive extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
+  public int Sign(double input)
+  {
+    if (input == 0)
+    {
+      return 0;
+    }
+
+    return input > 0 ? 1 : -1;
+  }
+
   @Override
-  public void execute() {
-    this.drivetrain.tankDrive(joystick.getY(), joystick.getZ());
+  public void execute() 
+  {
+    double velocityY = this.joystick.getY();
+    double velocityLeft = velocityY - Sign(velocityY) * joystick.getZ();
+    double velocityRight = velocityY - Sign(velocityY) * joystick.getX();
+    this.drivetrain.tankDrive(velocityLeft, velocityRight);
   }
 
   // Called once the command ends or is interrupted.
