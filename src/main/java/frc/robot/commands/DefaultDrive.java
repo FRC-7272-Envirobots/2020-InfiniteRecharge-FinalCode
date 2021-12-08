@@ -37,10 +37,27 @@ public class DefaultDrive extends CommandBase {
   @Override
   public void execute() 
   {
-    double velocityY = this.joystick.getY();
-    double velocityLeft = velocityY - Sign(velocityY) * joystick.getZ();
-    double velocityRight = velocityY - Sign(velocityY) * joystick.getX();
-    this.drivetrain.tankDrive(velocityLeft, velocityRight);
+    double velocityY = joystick.getY();
+    double velocityX = joystick.getX();
+    /*if (velocityX != 0)
+    {
+      double velocityXNormalized = velocityX / 5;
+      double velocityLeft = velocityX > 0 ? velocityY * velocityXNormalized : 0;
+      double velocityRight = velocityX > 0 ? 0 : velocityY * velocityXNormalized;
+      this.drivetrain.tankDrive(velocityLeft, velocityRight);
+    }
+    else
+    {
+      double velocityLeft = velocityY;
+      double velocityRight = velocityY;
+      this.drivetrain.tankDrive(velocityLeft, velocityRight);
+    }
+*/
+      double velocityXNormalized = velocityX / 5;
+      double velocityLeft = (velocityY / 2) + (velocityX > 0 ? (velocityY / 2) * velocityXNormalized : 0);
+      double velocityRight = (velocityY / 2) + (velocityX > 0 ? 0 : (velocityY / 2) * velocityXNormalized);
+      this.drivetrain.tankDrive(velocityLeft, velocityRight);
+  
   }
 
   // Called once the command ends or is interrupted.

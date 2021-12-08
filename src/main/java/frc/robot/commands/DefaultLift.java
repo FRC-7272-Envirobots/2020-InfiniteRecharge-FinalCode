@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lift;
 
@@ -22,7 +23,7 @@ public class DefaultLift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.lift.setDropper(false);
+    this.lift.setDropper(DoubleSolenoid.Value.kOff);
   }
 
   // Called once the command ends or is interrupted.

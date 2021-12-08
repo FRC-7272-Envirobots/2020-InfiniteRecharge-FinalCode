@@ -7,10 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lift;
 
-public class LiftDown extends CommandBase {
+public class ToggleLift extends CommandBase 
+{
   private final Lift lift;
-  /** Creates a new LiftUp. */
-  public LiftDown(Lift lift) {
+
+  // Creates a new DropLift.
+  public ToggleLift(Lift lift)
+  {
     this.lift = lift;
     addRequirements(lift);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -18,24 +21,15 @@ public class LiftDown extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    lift.rotate(-0.75);
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    lift.rotate(0);
+  public void initialize() 
+  {
+    this.lift.dropper.toggle();
   }
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean isFinished() 
+  {
     return false;
   }
 }

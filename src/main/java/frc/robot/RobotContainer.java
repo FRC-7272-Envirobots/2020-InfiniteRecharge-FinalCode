@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -12,6 +11,7 @@ import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DropLift;
 import frc.robot.commands.LiftDown;
 import frc.robot.commands.LiftUp;
+import frc.robot.commands.ToggleLift;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Lift;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -53,10 +53,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton button1 = new JoystickButton(joystick, 1);
+    JoystickButton button3 = new JoystickButton(joystick, 2);
     JoystickButton button11 = new JoystickButton(joystick, 11);
     JoystickButton button12 = new JoystickButton(joystick, 12);
 
     button1.whenPressed(new DropLift(lift).withTimeout(15));
+    button3.whenPressed(new ToggleLift(lift));
     button11.whenHeld(new LiftDown(lift));
     button12.whenHeld(new LiftUp(lift));
   }

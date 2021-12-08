@@ -4,12 +4,15 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Lift;
 
-public class DropLift extends CommandBase {
+public class DropLift extends CommandBase 
+{
   private final Lift lift;
-  /** Creates a new DropLift. */
+
+  // Creates a new DropLift.
   public DropLift(Lift lift) {
     this.lift = lift;
     addRequirements(lift);
@@ -18,26 +21,29 @@ public class DropLift extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    this.lift.setDropper(true);
-    lift.setOtherDropper(false);
-    }
+  public void initialize() 
+  {
+    this.lift.setDropper(DoubleSolenoid.Value.kForward);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    this.lift.setDropper(false);
+  public void execute() 
+  {
+    this.lift.setDropper(DoubleSolenoid.Value.kForward);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    this.lift.setDropper(true);
+  public void end(boolean interrupted) 
+  {
+    this.lift.setDropper(DoubleSolenoid.Value.kOff);
   }
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean isFinished() 
+  {
     return false;
   }
 }

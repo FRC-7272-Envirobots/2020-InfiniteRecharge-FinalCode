@@ -24,7 +24,7 @@ public class LiftUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    lift.rotate(.5);
+    lift.rotate(0.75);
   }
 
   // Called once the command ends or is interrupted.
