@@ -24,40 +24,10 @@ public class DefaultDrive extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
-  public int Sign(double input)
-  {
-    if (input == 0)
-    {
-      return 0;
-    }
-
-    return input > 0 ? 1 : -1;
-  }
-
   @Override
   public void execute() 
   {
-    double velocityY = joystick.getY();
-    double velocityX = joystick.getX();
-    /*if (velocityX != 0)
-    {
-      double velocityXNormalized = velocityX / 5;
-      double velocityLeft = velocityX > 0 ? velocityY * velocityXNormalized : 0;
-      double velocityRight = velocityX > 0 ? 0 : velocityY * velocityXNormalized;
-      this.drivetrain.tankDrive(velocityLeft, velocityRight);
-    }
-    else
-    {
-      double velocityLeft = velocityY;
-      double velocityRight = velocityY;
-      this.drivetrain.tankDrive(velocityLeft, velocityRight);
-    }
-*/
-      double velocityXNormalized = velocityX / 5;
-      double velocityLeft = (velocityY / 2) + (velocityX > 0 ? (velocityY / 2) * velocityXNormalized : 0);
-      double velocityRight = (velocityY / 2) + (velocityX > 0 ? 0 : (velocityY / 2) * velocityXNormalized);
-      this.drivetrain.tankDrive(velocityLeft, velocityRight);
-  
+      this.drivetrain.arcadeDrive(-joystick.getRawAxis(1), joystick.getRawAxis(0));
   }
 
   // Called once the command ends or is interrupted.
@@ -66,7 +36,8 @@ public class DefaultDrive extends CommandBase {
 
   // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean isFinished() 
+  {
     return false;
   }
 }
