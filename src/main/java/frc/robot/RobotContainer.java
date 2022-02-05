@@ -11,9 +11,12 @@ import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DropLift;
 import frc.robot.commands.LiftDown;
 import frc.robot.commands.LiftUp;
+import frc.robot.commands.LimeLightDrive;
+import frc.robot.commands.TestLimeLight;
 import frc.robot.commands.ToggleLift;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -29,6 +32,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain drivetrain;
   private final Lift lift;
+  private final LimeLight limeLight;
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -38,6 +42,7 @@ public class RobotContainer {
 
     lift = new Lift();
     drivetrain = new Drivetrain();
+    limeLight = new LimeLight();
     DefaultDrive defaultDrive = new DefaultDrive(drivetrain, joystick);
 
     // Configure the button bindings
@@ -53,12 +58,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     JoystickButton button1 = new JoystickButton(joystick, 1);
-    JoystickButton button3 = new JoystickButton(joystick, 2);
+    JoystickButton button2 = new JoystickButton(joystick, 2);
+    JoystickButton button7 = new JoystickButton(joystick, 7);
+    JoystickButton button8 = new JoystickButton(joystick, 8);
     JoystickButton button11 = new JoystickButton(joystick, 11);
     JoystickButton button12 = new JoystickButton(joystick, 12);
 
     button1.whenPressed(new DropLift(lift).withTimeout(15));
-    button3.whenPressed(new ToggleLift(lift));
+    button2.whenPressed(new ToggleLift(lift));
+    button7.whenHeld(new LimeLightDrive(drivetrain, limeLight));
+    button8.whenHeld(new TestLimeLight(limeLight));
     button11.whenHeld(new LiftDown(lift));
     button12.whenHeld(new LiftUp(lift));
   }

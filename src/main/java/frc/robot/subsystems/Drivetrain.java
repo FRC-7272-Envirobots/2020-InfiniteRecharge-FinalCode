@@ -10,18 +10,20 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Drivetrain extends SubsystemBase {
+public class Drivetrain extends SubsystemBase 
+{
   private final WPI_VictorSPX leftFront;
   private final WPI_VictorSPX leftBack;
   private final WPI_VictorSPX rightFront;
   private final WPI_VictorSPX rightBack;
 
-  private final SpeedControllerGroup left;
-  private final SpeedControllerGroup right;
-  private final DifferentialDrive drive;
+  public final SpeedControllerGroup left;
+  public final SpeedControllerGroup right;
+  public final DifferentialDrive drive;
 
   /** Creates a new Drivetrain. */
-  public Drivetrain() {
+  public Drivetrain() 
+  {
     leftFront = new WPI_VictorSPX(3);
     leftBack = new WPI_VictorSPX(1);
     rightFront = new WPI_VictorSPX(2);
@@ -37,7 +39,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
+  public void periodic() 
+  {
     // This method will be called once per scheduler run
   }
 
