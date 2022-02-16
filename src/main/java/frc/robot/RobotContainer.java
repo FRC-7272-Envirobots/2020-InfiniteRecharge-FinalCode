@@ -12,9 +12,13 @@ import frc.robot.commands.DropLift;
 import frc.robot.commands.LiftDown;
 import frc.robot.commands.LiftUp;
 import frc.robot.commands.LimeLightDrive;
+import frc.robot.commands.FalconTest;
 import frc.robot.commands.TestLimeLight;
+import frc.robot.commands.TestRevEncoder;
 import frc.robot.commands.ToggleLift;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Encoders;
+import frc.robot.subsystems.Falcon500Test;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.LimeLight;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -33,7 +37,8 @@ public class RobotContainer {
   private final Drivetrain drivetrain;
   private final Lift lift;
   private final LimeLight limeLight;
-
+  private final Falcon500Test falconTest;
+  private final Encoders encoders;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -43,6 +48,8 @@ public class RobotContainer {
     lift = new Lift();
     drivetrain = new Drivetrain();
     limeLight = new LimeLight();
+    falconTest = new Falcon500Test();
+    encoders = new Encoders();
     DefaultDrive defaultDrive = new DefaultDrive(drivetrain, joystick);
 
     // Configure the button bindings
@@ -61,6 +68,8 @@ public class RobotContainer {
     JoystickButton button2 = new JoystickButton(joystick, 2);
     JoystickButton button7 = new JoystickButton(joystick, 7);
     JoystickButton button8 = new JoystickButton(joystick, 8);
+    JoystickButton button9 = new JoystickButton(joystick, 9);
+    JoystickButton button10 = new JoystickButton(joystick, 10);
     JoystickButton button11 = new JoystickButton(joystick, 11);
     JoystickButton button12 = new JoystickButton(joystick, 12);
 
@@ -68,6 +77,8 @@ public class RobotContainer {
     button2.whenPressed(new ToggleLift(lift));
     button7.whenHeld(new LimeLightDrive(drivetrain, limeLight));
     button8.whenHeld(new TestLimeLight(limeLight));
+    button9.whenPressed(new FalconTest(falconTest));
+    button10.whenPressed(new TestRevEncoder(encoders));
     button11.whenHeld(new LiftDown(lift));
     button12.whenHeld(new LiftUp(lift));
   }
