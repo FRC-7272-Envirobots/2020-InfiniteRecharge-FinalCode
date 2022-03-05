@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -23,6 +24,8 @@ public class Robot extends TimedRobot {
 
   public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 
+  public static DutyCycleEncoder Encoder = new DutyCycleEncoder(1);
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -33,6 +36,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     Gyro.calibrate();
+    Encoder.reset();
   }
 
   /**

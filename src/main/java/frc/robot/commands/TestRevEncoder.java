@@ -21,8 +21,8 @@ public class TestRevEncoder extends CommandBase
     public void initialize()
     {
         Timer = 0;
-        SmartDashboard.putString("Encoder Active", "Yes");
         Encoder.Reset();
+        SmartDashboard.putNumber("Encoder Active", -9999);
     }
   
     // Called every time the scheduler runs while the command is scheduled.
@@ -30,7 +30,8 @@ public class TestRevEncoder extends CommandBase
     public void execute()
     {
         Timer++;
-        SmartDashboard.putNumber("Encoder Value", Encoder.GetRotate());
+        SmartDashboard.putNumber("Encoder Value", Encoder.GetDistance());
+        SmartDashboard.putNumber("Encoder Active", Timer);
     }
 
     // Returns true when the command should end.

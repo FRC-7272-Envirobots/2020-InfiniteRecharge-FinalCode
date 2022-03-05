@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.DropLift;
+import frc.robot.commands.FalconPowerDown;
 import frc.robot.commands.LiftDown;
 import frc.robot.commands.LiftUp;
 import frc.robot.commands.LimeLightDrive;
@@ -49,7 +50,7 @@ public class RobotContainer {
     drivetrain = new Drivetrain();
     limeLight = new LimeLight();
     falconTest = new Falcon500Test();
-    encoders = new Encoders();
+    encoders = new Encoders(Robot.Encoder);
     DefaultDrive defaultDrive = new DefaultDrive(drivetrain, joystick);
 
     // Configure the button bindings
@@ -77,7 +78,7 @@ public class RobotContainer {
     button2.whenPressed(new ToggleLift(lift));
     button7.whenHeld(new LimeLightDrive(drivetrain, limeLight));
     button8.whenHeld(new TestLimeLight(limeLight));
-    button9.whenPressed(new FalconTest(falconTest));
+    button9.whenHeld(new FalconTest(falconTest)).whenReleased(new FalconPowerDown(falconTest));
     button10.whenPressed(new TestRevEncoder(encoders));
     button11.whenHeld(new LiftDown(lift));
     button12.whenHeld(new LiftUp(lift));

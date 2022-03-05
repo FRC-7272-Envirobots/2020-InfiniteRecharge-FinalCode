@@ -4,25 +4,24 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Encoders extends SubsystemBase 
 {
-  public Encoder ThroughBore;
+  public DutyCycleEncoder ThroughBore;
 
-  public Encoders()
+  public Encoders(DutyCycleEncoder encoder)
   {
-    ThroughBore = new Encoder(0, 1, true, EncodingType.k4X);
+    ThroughBore = encoder;
   }
 
   public void Reset()
   {
-      ThroughBore.reset();
+    ThroughBore.reset();
   }
 
-  public double GetRotate()
+  public double GetDistance()
   {
       return ThroughBore.getDistance();
   }

@@ -13,6 +13,8 @@ public class Falcon500Test extends SubsystemBase
 {
   public TalonSRX Rotate;
 
+  public double CurrentSpeed;
+
   public Falcon500Test()
   {
     this.Rotate = new TalonSRX(7);
@@ -20,6 +22,7 @@ public class Falcon500Test extends SubsystemBase
 
   public void rotate(double speed)
   {
+    CurrentSpeed = speed;
     Rotate.set(ControlMode.PercentOutput, speed);
   }
 
